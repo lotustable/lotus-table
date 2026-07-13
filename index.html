@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Lotus Table</title>
+<meta name="description" content="Two Asian American women having the honest conversations they wish they had years ago. On cultural expectation, professional barriers, and moving from surviving to thriving on your own terms. Hosted by Flora and Rachel.">
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<link rel="icon" href="icon.png" sizes="any">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+<!-- ==========================================================
+     EDIT ME: replace every YOURDOMAIN.com below with your domain.
+     There are 3 of them. Keep the https:// and the file name.
+     ========================================================== -->
+<link rel="canonical" href="https://YOURDOMAIN.com/">
+<meta property="og:url" content="https://YOURDOMAIN.com/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lotus Table">
+<meta property="og:title" content="The Lotus Table">
+<meta property="og:description" content="Two Asian American women having the honest conversations they wish they'd had years ago. Season One, out now.">
+<meta property="og:image" content="https://YOURDOMAIN.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Lotus Table podcast">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Lotus Table">
+<meta name="twitter:description" content="Two Asian American women having the honest conversations they wish they'd had years ago. Season One, out now.">
+<meta name="twitter:image" content="https://YOURDOMAIN.com/og-image.png">
+
+<meta name="theme-color" content="#F7F5F1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C2321;
+    --ink-soft:#565F5B;
+    --ink-faint:#636A66;
+    --paper:#F7F5F1;
+    --hair:rgba(28,35,33,.10);
+    --gold:#C9A961;
+    --pink:#D9A5A0;
+    --display:"Cormorant Garamond",Georgia,serif;
+    --body:"Jost",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--body);font-weight:300;
+    font-size:16px;line-height:1.8;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{width:min(1140px,88vw);margin:0 auto}
+  ::selection{background:#E4E0D8;color:var(--ink)}
+
+  .skip{
+    position:absolute;left:-9999px;top:0;z-index:100;
+    background:var(--ink);color:var(--paper);
+    padding:14px 22px;text-decoration:none;
+    font-size:.75rem;letter-spacing:.18em;text-transform:uppercase;
+  }
+  .skip:focus{left:0}
+
+  blockquote{margin:0}
+
+  .kicker{
+    font-size:.68rem;letter-spacing:.32em;text-transform:uppercase;
+    color:var(--ink-faint);font-weight:400;
+  }
+
+  .site-nav{position:absolute;top:0;left:0;right:0;z-index:10;padding:36px 0}
+  .site-nav .wrap{display:flex;justify-content:space-between;align-items:center}
+  .mark{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:var(--display);font-size:1.15rem;font-weight:400;
+    letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;
+  }
+  .mark img{display:block;width:30px;height:auto}
+  .site-nav ul{display:flex;gap:38px;list-style:none}
+  .site-nav a{
+    color:var(--ink-soft);text-decoration:none;
+    font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+    padding-bottom:3px;border-bottom:1px solid transparent;transition:.3s;
+  }
+  .site-nav a:hover{color:var(--ink);border-color:var(--ink-faint)}
+
+  header{
+    min-height:100vh;display:flex;align-items:center;
+    position:relative;padding:140px 0 90px;
+    isolation:isolate;
+  }
+  header::before{
+    content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(ellipse 46% 46% at 80% 44%, rgba(201,169,97,.15), transparent 68%),
+      radial-gradient(ellipse 38% 38% at 92% 72%, rgba(217,165,160,.10), transparent 68%);
+  }
+  .hero{display:grid;grid-template-columns:1fr .78fr;gap:80px;align-items:center}
+  h1,h2,.quote p,.ep-title{text-wrap:balance}
+  .lede,.cols p,.ep-desc{text-wrap:pretty}
+  h1{
+    font-family:var(--display);font-weight:300;
+    margin:26px 0 0;display:flex;flex-direction:column;
+  }
+  .h1-a{
+    font-size:clamp(1.5rem,2.6vw,2.1rem);
+    line-height:1.1;letter-spacing:.02em;
+    color:var(--ink-soft);
+  }
+  .h1-b{
+    font-size:clamp(3.6rem,7.4vw,6.2rem);
+    line-height:1;letter-spacing:-.015em;
+    color:var(--ink);margin-top:.15em;
+  }
+  .rule{
+    width:88px;height:1px;margin:40px 0 32px;border:0;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+  }
+  .lede{max-width:40ch;color:var(--ink-soft);font-size:1.05rem}
+  .meta{margin-top:34px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+  .link{
+    font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink);text-decoration:none;
+    border-bottom:1px solid var(--ink);padding-bottom:4px;transition:.3s;
+  }
+  .link:hover{color:var(--ink-soft);border-color:var(--ink-soft)}
+
+  .figure{position:relative;display:flex;justify-content:center}
+  .figure svg{width:100%;max-width:380px;height:auto;overflow:visible}
+
+  .draw{
+    stroke-dasharray:520;stroke-dashoffset:520;
+    animation:draw 2.8s cubic-bezier(.16,.75,.3,1) forwards;
+  }
+  .stem-line{
+    stroke-dasharray:100;stroke-dashoffset:100;
+    animation:draw 2.4s cubic-bezier(.33,.7,.3,1) .5s forwards;
+  }
+  /* petals open in mirrored pairs, outward from the centre */
+  .d2{animation-delay:2.1s}
+  .d3,.d4{animation-delay:2.7s}
+  .d5,.d6{animation-delay:3.3s}
+
+  .core{
+    opacity:0;transform-origin:150px 164px;
+    animation:core 1.6s cubic-bezier(.22,1,.36,1) 5.1s forwards;
+  }
+  /* the water is disturbed first; the stem then rises out of it */
+  .ripple{
+    opacity:0;
+    animation:ripple-in 1.6s ease-out .1s forwards;
+  }
+  .ripple ellipse{
+    transform-origin:150px 256px;
+    transform:scale(.72);
+    animation:spread 2.2s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .ripple ellipse:nth-of-type(3){animation-delay:.1s}
+  .ripple ellipse:nth-of-type(2){animation-delay:.35s}
+  .ripple ellipse:nth-of-type(1){animation-delay:.6s}
+
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes core{
+    from{opacity:0;transform:scale(.3)}
+    to  {opacity:1;transform:scale(1)}
+  }
+  @keyframes ripple-in{to{opacity:.9}}
+  @keyframes spread{
+    from{transform:scale(.72)}
+    to  {transform:scale(1)}
+  }
+
+  section{padding:150px 0}
+  section + section{border-top:1px solid var(--hair)}
+  .head{display:grid;grid-template-columns:180px minmax(0,1fr);gap:60px;margin-bottom:80px}
+  h2{
+    font-family:var(--display);font-weight:300;
+    font-size:clamp(2.1rem,3.8vw,3.2rem);
+    line-height:1.16;max-width:19ch;letter-spacing:-.005em;
+  }
+
+  .cols{display:grid;grid-template-columns:180px minmax(0,1fr);gap:60px;align-items:start}
+  .cols p{color:var(--ink-soft);margin-bottom:26px;max-width:44ch}
+  .cols p:last-child{margin-bottom:0}
+  .pullquote{
+    margin:56px 0 0;padding-top:44px;position:relative;
+    border-top:1px solid var(--hair);
+    max-width:34ch;
+  }
+  /* the mark hangs into the left margin, oversized and pale */
+  .pullquote::before{
+    content:"\201C";
+    position:absolute;left:-.62em;top:.02em;
+    font-family:var(--display);font-weight:400;
+    font-size:5.5rem;line-height:1;
+    color:var(--pink);opacity:.5;
+    pointer-events:none;
+  }
+  .quote{margin:0}
+  .quote p{
+    font-family:var(--display);font-style:italic;font-weight:300;
+    font-size:1.75rem;line-height:1.42;color:var(--ink);
+    margin:0;
+  }
+  .pullquote figcaption{
+    margin-top:24px;display:flex;align-items:center;gap:14px;
+    font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+  .pullquote figcaption::before{
+    content:"";width:28px;height:1px;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+  }
+  }
+
+  /* season: count and status on one baseline, not stacked labels */
+  .season{
+    display:grid;grid-template-columns:180px minmax(0,1fr);gap:60px;
+    align-items:baseline;padding-bottom:14px;
+  }
+  .season-count{
+    font-family:var(--display);font-size:1.5rem;font-weight:400;
+    color:var(--ink);letter-spacing:.01em;
+  }
+  .season-note{
+    font-size:.68rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--ink-faint);
+  }
+
+  /* episode rows */
+  .ep{
+    display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:60px;
+    align-items:baseline;padding:44px 0;
+    border-top:1px solid var(--hair);
+  }
+  .ep:last-of-type{border-bottom:1px solid var(--hair)}
+  .ep-body{min-width:0}
+  .ep-no{
+    font-family:var(--display);font-size:1.4rem;font-style:italic;
+    color:var(--ink-faint);
+  }
+  .ep-title{
+    font-family:var(--display);font-size:1.95rem;font-weight:400;
+    line-height:1.2;margin:0;
+  }
+  .ep-desc{
+    margin:12px 0 0;color:var(--ink-soft);font-size:.95rem;max-width:56ch;
+  }
+  .ep-len{
+    font-family:var(--display);font-style:italic;font-size:1rem;
+    color:var(--ink-faint);white-space:nowrap;margin:0;
+  }
+
+  /* per-episode platform links */
+  .ep-on{
+    list-style:none;display:flex;flex-wrap:wrap;gap:0;
+    margin:22px 0 0;padding:0;
+  }
+  .ep-on li + li::before{
+    content:"";display:inline-block;
+    width:1px;height:11px;margin:0 16px;
+    background:var(--hair);vertical-align:middle;
+  }
+  .ep-on a{
+    font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-faint);text-decoration:none;
+    padding-bottom:3px;border-bottom:1px solid transparent;
+    transition:.25s;
+  }
+  .ep-on a:hover{color:var(--ink);border-color:var(--ink)}
+
+  /* hero platform row */
+  .on{
+    list-style:none;display:flex;flex-wrap:wrap;gap:26px;
+    margin:40px 0 0;padding:0;
+  }
+  .on a{
+    display:inline-flex;align-items:center;gap:9px;
+    color:var(--ink-soft);text-decoration:none;
+    font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    transition:.25s;
+  }
+  .on svg{width:19px;height:19px;flex:none}
+  .on a:hover{color:var(--ink)}
+
+
+  /* ---------- player ---------- */
+  .player{
+    position:relative;
+    border:1px solid var(--hair);
+    border-radius:12px;overflow:hidden;
+    min-height:352px;
+    margin-bottom:0;
+  }
+  .player-fallback{
+    position:absolute;inset:0;z-index:2;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:14px;text-align:center;padding:24px;
+    background:var(--paper);
+    opacity:0;visibility:hidden;transition:opacity .4s ease;
+  }
+  .player.failed .player-fallback{opacity:1;visibility:visible}
+  .player-fallback p{
+    font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-faint);margin:0;
+  }
+  .player-fallback a{
+    font-family:var(--display);font-size:1.3rem;color:var(--ink);
+    text-decoration:none;border-bottom:1px solid var(--ink-faint);
+    padding-bottom:3px;
+  }
+  .player iframe{
+    display:block;position:relative;z-index:1;
+    border-radius:12px;min-height:352px;
+  }
+
+  /* ---------- follow ---------- */
+  .follow{
+    margin-top:56px;padding-top:44px;
+    border-top:1px solid var(--hair);
+    display:grid;grid-template-columns:180px minmax(0,1fr);gap:60px;
+    align-items:baseline;
+  }
+  .follow-copy{
+    grid-column:2;margin:0 0 24px;max-width:44ch;
+    font-family:var(--display);font-size:1.35rem;font-style:italic;
+    font-weight:300;line-height:1.45;color:var(--ink);
+  }
+  .follow-on{
+    grid-column:2;list-style:none;display:flex;flex-wrap:wrap;
+    margin:0;padding:0;
+  }
+  .follow-on li + li::before{
+    content:"";display:inline-block;width:1px;height:11px;
+    margin:0 18px;background:var(--hair);vertical-align:middle;
+  }
+  .follow-on a{
+    font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-faint);text-decoration:none;
+    padding-bottom:3px;border-bottom:1px solid transparent;transition:.25s;
+  }
+  .follow-on a:hover{color:var(--ink);border-color:var(--ink)}
+
+  footer{
+    background:var(--ink);padding:70px 0;position:relative;
+  }
+  footer::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,var(--gold),var(--pink));
+  }
+  footer .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+  .flinks{display:flex;gap:30px;align-items:center}
+  footer{color:var(--paper)}
+  footer .mark{color:var(--paper)}
+  .mark-footer img{width:34px;filter:brightness(0) invert(1);opacity:.9}
+  footer .kicker{color:rgba(247,245,241,.55)}
+  footer a{color:rgba(247,245,241,.7);text-decoration:none;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;transition:.3s}
+  footer a:hover{color:var(--paper)}
+
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr;gap:56px}
+    .h1-a{font-size:1.35rem}
+    .figure{order:-1;max-width:230px;margin:0 auto}
+    .head{grid-template-columns:1fr;gap:24px}
+    .cols{grid-template-columns:1fr;gap:44px}
+    .pullquote{margin-top:44px;padding-top:36px}
+    .pullquote::before{font-size:4rem;left:-.1em;opacity:.4}
+    .quote p{font-size:1.45rem}
+    .season{grid-template-columns:1fr;gap:6px;padding-bottom:16px}
+    .follow{grid-template-columns:1fr;gap:0}
+    .follow-copy,.follow-on{grid-column:1}
+    .follow-copy{font-size:1.2rem}
+    .ep{grid-template-columns:auto 1fr;gap:22px;padding:34px 0}
+    .ep-len{grid-column:2;grid-row:2;margin-top:14px}
+    .on{gap:18px}
+    .on a span{display:none}
+    .on svg{width:26px;height:26px}
+    .ep-title{font-size:1.5rem}
+    .site-nav ul{gap:20px}
+    section{padding:90px 0}
+    header{min-height:auto;padding:130px 0 70px}
+  }
+  @media (max-width:520px){
+    .site-nav ul{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *{animation:none!important;transition:none!important}
+  }
+  :focus-visible{
+    outline:2px solid var(--ink);
+    outline-offset:4px;
+    border-radius:2px;
+  }
+  footer :focus-visible{outline-color:var(--paper)}
+
+  @media (forced-colors:active){
+    .figure svg *{stroke:CanvasText}
+    .ep{border-color:CanvasText}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="site-nav" aria-label="Primary">
+  <div class="wrap">
+    <a class="mark" href="#main">
+      <img src="logo.png" alt="" width="30" height="28">
+      <span>The Lotus Table</span>
+    </a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#episodes">Episodes</a></li>
+      <li><a href="#listen">Listen</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+<header>
+  <div class="wrap hero">
+    <div>
+      <p class="kicker">A podcast with Flora &amp; Rachel</p>
+      <h1><span class="h1-a">Rooted in mud.</span><span class="h1-b">Still blooming.</span></h1>
+      <div class="rule"></div>
+      <p class="lede">On the expectations we inherit, and the slow work of moving from surviving to thriving on our&nbsp;own&nbsp;terms.</p>
+      <div class="meta">
+        <a class="link" href="#episodes">Listen now</a>
+        <span class="kicker">Season One, out now</span>
+      </div>
+
+      <ul class="on" aria-label="Available on">
+        <li><a href="https://podcasts.apple.com/us/podcast/the-lotus-table/id6790049830" target="_blank" rel="noopener" aria-label="Listen on Apple Podcasts (opens in a new tab)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11.5" fill="none" stroke="currentColor"/><path d="M12 6.4a2.3 2.3 0 1 1 0 4.6 2.3 2.3 0 0 1 0-4.6Zm0 6.1c1.6 0 2.6.7 2.4 2l-.5 3.4c-.1.9-.9 1.6-1.9 1.6s-1.8-.7-1.9-1.6l-.5-3.4c-.2-1.3.8-2 2.4-2Z" fill="currentColor"/></svg>
+          <span>Apple Podcasts</span></a></li>
+        <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Listen on Spotify (opens in a new tab)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11.5" fill="none" stroke="currentColor"/><path d="M7 9.4c3.2-.9 6.6-.6 9.4 1M7.6 12.5c2.6-.7 5.4-.5 7.7.8M8.2 15.5c2-.5 4.2-.3 6 .7" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          <span>Spotify</span></a></li>
+        <li><a href="https://iheart.com/podcast/338710451/" target="_blank" rel="noopener" aria-label="Listen on iHeartRadio (opens in a new tab)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="11.5" fill="none" stroke="currentColor"/><path d="M12 17.2s-4.2-2.6-4.2-5.4a2.3 2.3 0 0 1 4.2-1.3 2.3 2.3 0 0 1 4.2 1.3c0 2.8-4.2 5.4-4.2 5.4Z" fill="currentColor"/></svg>
+          <span>iHeartRadio</span></a></li>
+      </ul>
+    </div>
+
+    <div class="figure">
+      <svg viewBox="0 0 300 300" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="stemToPetal" gradientUnits="userSpaceOnUse"
+                          x1="150" y1="258" x2="150" y2="60">
+            <stop offset="0%"   stop-color="#4E6B55"/>
+            <stop offset="26%"  stop-color="#5F7A63"/>
+            <stop offset="48%"  stop-color="#8F9A78"/>
+            <stop offset="66%"  stop-color="#C0968E"/>
+            <stop offset="82%"  stop-color="#D39D9C"/>
+            <stop offset="100%" stop-color="#CB7F94"/>
+          </linearGradient>
+          <linearGradient id="ringLine" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="#C9A961"/>
+            <stop offset="100%" stop-color="#D9A5A0"/>
+          </linearGradient>
+        </defs>
+
+        <!-- water sits behind everything, so the stem reads as entering it -->
+        <g class="ripple" fill="none" stroke="url(#ringLine)">
+          <ellipse cx="150" cy="256" rx="146" ry="19" stroke-width=".55" opacity=".55"/>
+          <ellipse cx="150" cy="256" rx="104" ry="13" stroke-width=".7"  opacity=".8"/>
+          <ellipse cx="150" cy="256" rx="62"  ry="7"  stroke-width=".8"/>
+        </g>
+
+        <g stroke="url(#stemToPetal)" stroke-width="1.1" stroke-linecap="round" fill="none">
+          <!-- stem meets the waterline and stops -->
+          <path class="stem-line" d="M150 258 C150 224 139 202 150 168"/>
+          <path class="draw d2" d="M150 168 C126 138 122 96 150 60 C178 96 174 138 150 168Z"/>
+          <path class="draw d3" d="M150 170 C112 152 92 118 96 78 C132 92 150 130 150 170Z"/>
+          <path class="draw d4" d="M150 170 C188 152 208 118 204 78 C168 92 150 130 150 170Z"/>
+          <path class="draw d5" d="M150 174 C104 176 68 156 54 122 C98 116 138 140 150 174Z"/>
+          <path class="draw d6" d="M150 174 C196 176 232 156 246 122 C202 116 162 140 150 174Z"/>
+        </g>
+
+        <circle class="core" cx="150" cy="164" r="3.5" fill="#C9A961"/>
+      </svg>
+    </div>
+</header>
+
+<section id="about" aria-labelledby="about-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="kicker">About</p>
+      <h2 id="about-h">The lotus grows in the&nbsp;mud.</h2>
+    </div>
+    <div class="cols">
+      <div></div>
+      <div>
+        <p>Two Asian American women having the honest conversations we wish we had years ago, on what it is really like to navigate a world that was not built&nbsp;for&nbsp;us.</p>
+        <p>We talk about what we inherited, what it costs to keep the peace, and what happens when we stop. No advice from on high. Two people working it out loud, and an invitation for you to do&nbsp;the&nbsp;same.</p>
+        <figure class="pullquote">
+          <blockquote class="quote">
+            <p>You do not have to earn your place at the table. You are allowed to&nbsp;build&nbsp;one.</p>
+          </blockquote>
+          <figcaption>The Lotus Table</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="episodes" aria-labelledby="episodes-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="kicker">Episodes</p>
+      <h2 id="episodes-h">Season One, in&nbsp;full.</h2>
+    </div>
+
+    <div class="season">
+      <p class="season-count">Four episodes</p>
+      <p class="season-note">All available now</p>
+    </div>
+
+    <article class="ep">
+      <p class="ep-no">01</p>
+      <div class="ep-body">
+        <h3 class="ep-title">Why We are Doing This</h3>
+        <p class="ep-desc">The stories and turning points that led us here. From family expectation to workplace&nbsp;struggle.</p>
+        <ul class="ep-on" aria-label="Play episode 01 on">
+          <li><a href="https://podcasts.apple.com/us/podcast/the-lotus-table/id6790049830" target="_blank" rel="noopener" aria-label="Play Why We are Doing This on Apple Podcasts (opens in a new tab)">Apple</a></li>
+          <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Play Why We are Doing This on Spotify (opens in a new tab)">Spotify</a></li>
+          <li><a href="https://iheart.com/podcast/338710451/" target="_blank" rel="noopener" aria-label="Play Why We are Doing This on iHeartRadio (opens in a new tab)">iHeartRadio</a></li>
+        </ul>
+      </div>
+      <p class="ep-len">39 min</p>
+    </article>
+
+    <article class="ep">
+      <p class="ep-no">02</p>
+      <div class="ep-body">
+        <h3 class="ep-title">How Perception Influences Social&nbsp;Identity</h3>
+        <p class="ep-desc">On the cultural and public perceptions that shape how Asian women see&nbsp;themselves.</p>
+        <ul class="ep-on" aria-label="Play episode 02 on">
+          <li><a href="https://podcasts.apple.com/us/podcast/the-lotus-table/id6790049830" target="_blank" rel="noopener" aria-label="Play How Perception Influences Social Identity on Apple Podcasts (opens in a new tab)">Apple</a></li>
+          <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Play How Perception Influences Social Identity on Spotify (opens in a new tab)">Spotify</a></li>
+          <li><a href="https://iheart.com/podcast/338710451/" target="_blank" rel="noopener" aria-label="Play How Perception Influences Social Identity on iHeartRadio (opens in a new tab)">iHeartRadio</a></li>
+        </ul>
+      </div>
+      <p class="ep-len">46 min</p>
+    </article>
+
+    <article class="ep">
+      <p class="ep-no">03</p>
+      <div class="ep-body">
+        <h3 class="ep-title">Microaggressions: Death by a Thousand Paper&nbsp;Cuts</h3>
+        <p class="ep-desc">The small daily cuts, and the stereotypes they are&nbsp;rooted&nbsp;in.</p>
+        <ul class="ep-on" aria-label="Play episode 03 on">
+          <li><a href="https://podcasts.apple.com/us/podcast/the-lotus-table/id6790049830" target="_blank" rel="noopener" aria-label="Play Microaggressions: Death by a Thousand Paper Cuts on Apple Podcasts (opens in a new tab)">Apple</a></li>
+          <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Play Microaggressions: Death by a Thousand Paper Cuts on Spotify (opens in a new tab)">Spotify</a></li>
+          <li><a href="https://iheart.com/podcast/338710451/" target="_blank" rel="noopener" aria-label="Play Microaggressions: Death by a Thousand Paper Cuts on iHeartRadio (opens in a new tab)">iHeartRadio</a></li>
+        </ul>
+      </div>
+      <p class="ep-len">39 min</p>
+    </article>
+
+    <article class="ep">
+      <p class="ep-no">04</p>
+      <div class="ep-body">
+        <h3 class="ep-title">The House We Inherited</h3>
+        <p class="ep-desc">What happens when tradition is passed down without the why behind&nbsp;it.</p>
+        <ul class="ep-on" aria-label="Play episode 04 on">
+          <li><a href="https://podcasts.apple.com/us/podcast/the-lotus-table/id6790049830" target="_blank" rel="noopener" aria-label="Play The House We Inherited on Apple Podcasts (opens in a new tab)">Apple</a></li>
+          <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Play The House We Inherited on Spotify (opens in a new tab)">Spotify</a></li>
+          <li><a href="https://iheart.com/podcast/338710451/" target="_blank" rel="noopener" aria-label="Play The House We Inherited on iHeartRadio (opens in a new tab)">iHeartRadio</a></li>
+        </ul>
+      </div>
+      <p class="ep-len">57 min</p>
+    </article>
+  </div>
+</section>
+
+<section id="listen" aria-labelledby="listen-h">
+  <div class="wrap">
+    <div class="head">
+      <p class="kicker">Listen</p>
+      <h2 id="listen-h">Play the season&nbsp;here.</h2>
+    </div>
+
+    <!-- Spotify player: full show, scrollable episode list -->
+    <div class="player" id="player">
+      <div class="player-fallback">
+        <p>Player unavailable</p>
+        <a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Open The Lotus Table on Spotify (opens in a new tab)">Open on Spotify</a>
+      </div>
+      <iframe
+        id="spotify-embed"
+        title="The Lotus Table on Spotify"
+        src="https://open.spotify.com/embed/show/033NQXQAjH0upMjkG6Wzlr?utm_source=generator&amp;si=6d052cb25b11466e"
+        width="100%" height="352" frameborder="0"
+        loading="lazy"
+        allowfullscreen
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+
+    <div class="follow">
+      <p class="follow-copy">Season Two is in the works. Follow the show and you will know when it lands.</p>
+      <ul class="follow-on" aria-label="Follow on">
+        <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Follow on Spotify (opens in a new tab)">Follow on Spotify</a></li>
+        <li><a href="https://podcasts.apple.com/us/podcast/the-lotus-table/id6790049830" target="_blank" rel="noopener" aria-label="Follow on Apple Podcasts (opens in a new tab)">Apple Podcasts</a></li>
+        <li><a href="mailto:cometothelotustable@gmail.com">Write to us</a></li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="mark mark-footer">
+        <img src="logo.png" alt="" width="34" height="32">
+        <span>The Lotus Table</span>
+      </div>
+      <p class="kicker" style="margin-top:14px">Hosted by Flora and Rachel</p>
+    </div>
+    <nav class="flinks" aria-label="Footer">
+      <a href="#about">About</a>
+      <a href="#episodes">Episodes</a>
+      <a href="mailto:cometothelotustable@gmail.com">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var box = document.getElementById('player');
+    var frame = document.getElementById('spotify-embed');
+    if (!box || !frame) return;
+
+    var loaded = false;
+    frame.addEventListener('load', function () {
+      loaded = true;
+      box.classList.remove('failed');
+    });
+
+    // If the embed is blocked (sandbox, file://, tracker blockers) it never loads.
+    setTimeout(function () {
+      if (!loaded) box.classList.add('failed');
+    }, 5000);
+  })();
+</script>
+
+</body>
+</html>
