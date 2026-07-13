@@ -9,17 +9,13 @@
 <link rel="icon" href="icon.png" sizes="any">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-<!-- ==========================================================
-     EDIT ME: replace every YOURDOMAIN.com below with your domain.
-     There are 3 of them. Keep the https:// and the file name.
-     ========================================================== -->
-<link rel="canonical" href="https://YOURDOMAIN.com/">
-<meta property="og:url" content="https://YOURDOMAIN.com/">
+<link rel="canonical" href="https://lotus-table.com/">
+<meta property="og:url" content="https://lotus-table.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Lotus Table">
 <meta property="og:title" content="The Lotus Table">
 <meta property="og:description" content="Two Asian American women having the honest conversations they wish they'd had years ago. Season One, out now.">
-<meta property="og:image" content="https://YOURDOMAIN.com/og-image.png">
+<meta property="og:image" content="https://lotus-table.com/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="The Lotus Table podcast">
@@ -27,15 +23,17 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Lotus Table">
 <meta name="twitter:description" content="Two Asian American women having the honest conversations they wish they'd had years ago. Season One, out now.">
-<meta name="twitter:image" content="https://YOURDOMAIN.com/og-image.png">
+<meta name="twitter:image" content="https://lotus-table.com/og-image.png">
 
 <meta name="theme-color" content="#F7F5F1">
+<meta name="color-scheme" content="light only">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
+    color-scheme:light only;
     --ink:#1C2321;
     --ink-soft:#565F5B;
     --ink-faint:#636A66;
@@ -91,7 +89,7 @@
 
   header{
     min-height:100vh;display:flex;align-items:center;
-    position:relative;padding:140px 0 90px;
+    position:relative;padding:140px 0 130px;
     isolation:isolate;
   }
   header::before{
@@ -130,33 +128,45 @@
   }
   .link:hover{color:var(--ink-soft);border-color:var(--ink-soft)}
 
-  .figure{position:relative;display:flex;justify-content:center}
-  .figure svg{width:100%;max-width:380px;height:auto;overflow:visible}
+  .figure{
+    position:relative;
+    display:flex;flex-direction:column;align-items:center;
+  }
 
-  .draw{
-    stroke-dasharray:520;stroke-dashoffset:520;
-    animation:draw 2.8s cubic-bezier(.16,.75,.3,1) forwards;
+  /* the cover floats above the water */
+  /* wrapper handles the rise, image handles the float, so they cannot fight */
+  .cover-rise{
+    display:block;width:100%;max-width:320px;
+    opacity:0;transform:translateY(22px) scale(.97);
+    animation:surface 1.8s cubic-bezier(.22,1,.36,1) .5s forwards;
   }
-  .stem-line{
-    stroke-dasharray:100;stroke-dashoffset:100;
-    animation:draw 2.4s cubic-bezier(.33,.7,.3,1) .5s forwards;
+  .cover{
+    width:100%;height:auto;display:block;
+    border-radius:18px;
+    box-shadow:
+      0 2px 6px rgba(28,35,33,.05),
+      0 18px 40px -12px rgba(28,35,33,.18);
+    animation:float 7s ease-in-out 2.6s infinite;
   }
-  /* petals open in mirrored pairs, outward from the centre */
-  .d2{animation-delay:2.1s}
-  .d3,.d4{animation-delay:2.7s}
-  .d5,.d6{animation-delay:3.3s}
+  @keyframes surface{
+    to{opacity:1;transform:translateY(0) scale(1)}
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%    {transform:translateY(-8px)}
+  }
 
-  .core{
-    opacity:0;transform-origin:150px 164px;
-    animation:core 1.6s cubic-bezier(.22,1,.36,1) 5.1s forwards;
+  /* water sits beneath, rings spreading outward */
+  .water{
+    width:100%;max-width:360px;height:auto;
+    margin-top:-14px;overflow:visible;
   }
-  /* the water is disturbed first; the stem then rises out of it */
   .ripple{
     opacity:0;
     animation:ripple-in 1.6s ease-out .1s forwards;
   }
   .ripple ellipse{
-    transform-origin:150px 256px;
+    transform-origin:150px 30px;
     transform:scale(.72);
     animation:spread 2.2s cubic-bezier(.22,1,.36,1) forwards;
   }
@@ -164,19 +174,35 @@
   .ripple ellipse:nth-of-type(2){animation-delay:.35s}
   .ripple ellipse:nth-of-type(1){animation-delay:.6s}
 
-  @keyframes draw{to{stroke-dashoffset:0}}
-  @keyframes core{
-    from{opacity:0;transform:scale(.3)}
-    to  {opacity:1;transform:scale(1)}
-  }
   @keyframes ripple-in{to{opacity:.9}}
   @keyframes spread{
     from{transform:scale(.72)}
     to  {transform:scale(1)}
   }
 
-  section{padding:150px 0}
+  .scroll{
+    position:absolute;left:50%;bottom:44px;
+    transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:12px;
+    color:var(--ink-faint);text-decoration:none;
+    font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;
+    opacity:0;animation:fade-in 1.2s ease 2.4s forwards;
+    transition:color .3s;
+  }
+  .scroll:hover{color:var(--ink)}
+  .scroll svg{width:16px;height:30px}
+  .wheel{animation:wheel 2s cubic-bezier(.5,0,.5,1) infinite}
+  @keyframes fade-in{to{opacity:1}}
+  @keyframes wheel{
+    0%      {transform:translateY(0);   opacity:0}
+    18%     {opacity:1}
+    68%     {transform:translateY(11px);opacity:0}
+    100%    {transform:translateY(11px);opacity:0}
+  }
+
+  section{padding:140px 0}
   section + section{border-top:1px solid var(--hair)}
+  .tight-end{padding-bottom:110px}
   .head{display:grid;grid-template-columns:180px minmax(0,1fr);gap:60px;margin-bottom:80px}
   h2{
     font-family:var(--display);font-weight:300;
@@ -234,11 +260,10 @@
 
   /* episode rows */
   .ep{
-    display:grid;grid-template-columns:180px minmax(0,1fr) auto;gap:60px;
-    align-items:baseline;padding:44px 0;
+    display:grid;grid-template-columns:180px minmax(0,1fr);gap:60px;
+    align-items:baseline;padding:52px 0;
     border-top:1px solid var(--hair);
   }
-  .ep:last-of-type{border-bottom:1px solid var(--hair)}
   .ep-body{min-width:0}
   .ep-no{
     font-family:var(--display);font-size:1.4rem;font-style:italic;
@@ -251,28 +276,11 @@
   .ep-desc{
     margin:12px 0 0;color:var(--ink-soft);font-size:.95rem;max-width:56ch;
   }
-  .ep-len{
-    font-family:var(--display);font-style:italic;font-size:1rem;
-    color:var(--ink-faint);white-space:nowrap;margin:0;
+  .ep-player{
+    margin-top:26px;max-width:640px;
+    border-radius:12px;overflow:hidden;
   }
-
-  /* per-episode platform links */
-  .ep-on{
-    list-style:none;display:flex;flex-wrap:wrap;gap:0;
-    margin:22px 0 0;padding:0;
-  }
-  .ep-on li + li::before{
-    content:"";display:inline-block;
-    width:1px;height:11px;margin:0 16px;
-    background:var(--hair);vertical-align:middle;
-  }
-  .ep-on a{
-    font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--ink-faint);text-decoration:none;
-    padding-bottom:3px;border-bottom:1px solid transparent;
-    transition:.25s;
-  }
-  .ep-on a:hover{color:var(--ink);border-color:var(--ink)}
+  .ep-player iframe{display:block;border-radius:12px}
 
   /* hero platform row */
   .on{
@@ -288,41 +296,8 @@
   .on svg{width:19px;height:19px;flex:none}
   .on a:hover{color:var(--ink)}
 
-
-  /* ---------- player ---------- */
-  .player{
-    position:relative;
-    border:1px solid var(--hair);
-    border-radius:12px;overflow:hidden;
-    min-height:352px;
-    margin-bottom:0;
-  }
-  .player-fallback{
-    position:absolute;inset:0;z-index:2;
-    display:flex;flex-direction:column;align-items:center;justify-content:center;
-    gap:14px;text-align:center;padding:24px;
-    background:var(--paper);
-    opacity:0;visibility:hidden;transition:opacity .4s ease;
-  }
-  .player.failed .player-fallback{opacity:1;visibility:visible}
-  .player-fallback p{
-    font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
-    color:var(--ink-faint);margin:0;
-  }
-  .player-fallback a{
-    font-family:var(--display);font-size:1.3rem;color:var(--ink);
-    text-decoration:none;border-bottom:1px solid var(--ink-faint);
-    padding-bottom:3px;
-  }
-  .player iframe{
-    display:block;position:relative;z-index:1;
-    border-radius:12px;min-height:352px;
-  }
-
   /* ---------- follow ---------- */
   .follow{
-    margin-top:56px;padding-top:44px;
-    border-top:1px solid var(--hair);
     display:grid;grid-template-columns:180px minmax(0,1fr);gap:60px;
     align-items:baseline;
   }
@@ -365,7 +340,9 @@
   @media (max-width:860px){
     .hero{grid-template-columns:1fr;gap:56px}
     .h1-a{font-size:1.35rem}
-    .figure{order:-1;max-width:230px;margin:0 auto}
+    .figure{order:-1;max-width:250px;margin:0 auto}
+    .cover-rise{max-width:220px}
+    .water{max-width:250px}
     .head{grid-template-columns:1fr;gap:24px}
     .cols{grid-template-columns:1fr;gap:44px}
     .pullquote{margin-top:44px;padding-top:36px}
@@ -375,8 +352,8 @@
     .follow{grid-template-columns:1fr;gap:0}
     .follow-copy,.follow-on{grid-column:1}
     .follow-copy{font-size:1.2rem}
-    .ep{grid-template-columns:auto 1fr;gap:22px;padding:34px 0}
-    .ep-len{grid-column:2;grid-row:2;margin-top:14px}
+    .ep{grid-template-columns:auto 1fr;gap:20px;padding:40px 0}
+    .ep-player{margin-top:20px}
     .on{gap:18px}
     .on a span{display:none}
     .on svg{width:26px;height:26px}
@@ -384,6 +361,7 @@
     .site-nav ul{gap:20px}
     section{padding:90px 0}
     header{min-height:auto;padding:130px 0 70px}
+    .scroll{display:none}
   }
   @media (max-width:520px){
     .site-nav ul{display:none}
@@ -400,7 +378,7 @@
   footer :focus-visible{outline-color:var(--paper)}
 
   @media (forced-colors:active){
-    .figure svg *{stroke:CanvasText}
+    .water *{stroke:CanvasText}
     .ep{border-color:CanvasText}
   }
 </style>
@@ -418,7 +396,7 @@
     <ul>
       <li><a href="#about">About</a></li>
       <li><a href="#episodes">Episodes</a></li>
-      <li><a href="#listen">Listen</a></li>
+      <li><a href="#listen">Follow</a></li>
     </ul>
   </div>
 </nav>
@@ -450,43 +428,35 @@
     </div>
 
     <div class="figure">
-      <svg viewBox="0 0 300 300" fill="none" aria-hidden="true">
+      <span class="cover-rise">
+        <img class="cover" src="cover.png"
+             alt="The Lotus Table podcast cover: a woman standing within an open lotus flower"
+             width="1800" height="1800">
+      </span>
+
+      <svg class="water" viewBox="0 0 300 60" fill="none" aria-hidden="true">
         <defs>
-          <linearGradient id="stemToPetal" gradientUnits="userSpaceOnUse"
-                          x1="150" y1="258" x2="150" y2="60">
-            <stop offset="0%"   stop-color="#4E6B55"/>
-            <stop offset="26%"  stop-color="#5F7A63"/>
-            <stop offset="48%"  stop-color="#8F9A78"/>
-            <stop offset="66%"  stop-color="#C0968E"/>
-            <stop offset="82%"  stop-color="#D39D9C"/>
-            <stop offset="100%" stop-color="#CB7F94"/>
-          </linearGradient>
           <linearGradient id="ringLine" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%"   stop-color="#C9A961"/>
             <stop offset="100%" stop-color="#D9A5A0"/>
           </linearGradient>
         </defs>
-
-        <!-- water sits behind everything, so the stem reads as entering it -->
         <g class="ripple" fill="none" stroke="url(#ringLine)">
-          <ellipse cx="150" cy="256" rx="146" ry="19" stroke-width=".55" opacity=".55"/>
-          <ellipse cx="150" cy="256" rx="104" ry="13" stroke-width=".7"  opacity=".8"/>
-          <ellipse cx="150" cy="256" rx="62"  ry="7"  stroke-width=".8"/>
+          <ellipse cx="150" cy="30" rx="146" ry="19" stroke-width=".55" opacity=".55"/>
+          <ellipse cx="150" cy="30" rx="104" ry="13" stroke-width=".7"  opacity=".8"/>
+          <ellipse cx="150" cy="30" rx="62"  ry="7"  stroke-width=".8"/>
         </g>
-
-        <g stroke="url(#stemToPetal)" stroke-width="1.1" stroke-linecap="round" fill="none">
-          <!-- stem meets the waterline and stops -->
-          <path class="stem-line" d="M150 258 C150 224 139 202 150 168"/>
-          <path class="draw d2" d="M150 168 C126 138 122 96 150 60 C178 96 174 138 150 168Z"/>
-          <path class="draw d3" d="M150 170 C112 152 92 118 96 78 C132 92 150 130 150 170Z"/>
-          <path class="draw d4" d="M150 170 C188 152 208 118 204 78 C168 92 150 130 150 170Z"/>
-          <path class="draw d5" d="M150 174 C104 176 68 156 54 122 C98 116 138 140 150 174Z"/>
-          <path class="draw d6" d="M150 174 C196 176 232 156 246 122 C202 116 162 140 150 174Z"/>
-        </g>
-
-        <circle class="core" cx="150" cy="164" r="3.5" fill="#C9A961"/>
       </svg>
     </div>
+
+  <a class="scroll" href="#about" aria-label="Scroll to about the show">
+    <span>Scroll</span>
+    <svg viewBox="0 0 16 30" aria-hidden="true">
+      <rect x=".6" y=".6" width="14.8" height="28.8" rx="7.4"
+            fill="none" stroke="currentColor" stroke-width="1"/>
+      <circle class="wheel" cx="8" cy="8.5" r="1.7" fill="currentColor"/>
+    </svg>
+  </a>
 </header>
 
 <section id="about" aria-labelledby="about-h">
@@ -511,7 +481,7 @@
   </div>
 </section>
 
-<section id="episodes" aria-labelledby="episodes-h">
+<section id="episodes" class="tight-end" aria-labelledby="episodes-h">
   <div class="wrap">
     <div class="head">
       <p class="kicker">Episodes</p>
@@ -519,7 +489,7 @@
     </div>
 
     <div class="season">
-      <p class="season-count">Four episodes</p>
+      <p class="season-count">Eight episodes</p>
       <p class="season-note">All available now</p>
     </div>
 
@@ -527,56 +497,128 @@
       <p class="ep-no">01</p>
       <div class="ep-body">
         <h3 class="ep-title">Why We are Doing This</h3>
-        <p class="ep-desc">The stories and turning points that led us here. From family expectation to workplace&nbsp;struggle.</p>
-        <ul class="ep-on" aria-label="Play episode 01 on">
-          <li><a href="https://podcasts.apple.com/us/podcast/the-lotus-table/id6790049830" target="_blank" rel="noopener" aria-label="Play Why We are Doing This on Apple Podcasts (opens in a new tab)">Apple</a></li>
-          <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Play Why We are Doing This on Spotify (opens in a new tab)">Spotify</a></li>
-          <li><a href="https://iheart.com/podcast/338710451/" target="_blank" rel="noopener" aria-label="Play Why We are Doing This on iHeartRadio (opens in a new tab)">iHeartRadio</a></li>
-        </ul>
+        <p class="ep-desc">From family expectation to workplace struggle. Why creating a space for Asian women to feel seen&nbsp;matters.</p>
+        <div class="ep-player">
+          <iframe
+            title="Why We are Doing This on Spotify"
+            src="https://open.spotify.com/embed/episode/7bqJnxh2T6zfcxveWmLVaq?utm_source=generator&amp;theme=0&amp;si=8391e74f12784e70"
+            width="100%" height="152" frameborder="0" loading="lazy"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
       </div>
-      <p class="ep-len">39 min</p>
     </article>
 
     <article class="ep">
       <p class="ep-no">02</p>
       <div class="ep-body">
         <h3 class="ep-title">How Perception Influences Social&nbsp;Identity</h3>
-        <p class="ep-desc">On the cultural and public perceptions that shape how Asian women see&nbsp;themselves.</p>
-        <ul class="ep-on" aria-label="Play episode 02 on">
-          <li><a href="https://podcasts.apple.com/us/podcast/the-lotus-table/id6790049830" target="_blank" rel="noopener" aria-label="Play How Perception Influences Social Identity on Apple Podcasts (opens in a new tab)">Apple</a></li>
-          <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Play How Perception Influences Social Identity on Spotify (opens in a new tab)">Spotify</a></li>
-          <li><a href="https://iheart.com/podcast/338710451/" target="_blank" rel="noopener" aria-label="Play How Perception Influences Social Identity on iHeartRadio (opens in a new tab)">iHeartRadio</a></li>
-        </ul>
+        <p class="ep-desc">The harmful stereotypes that shape how Asian women are perceived, and how they come to see&nbsp;themselves.</p>
+        <div class="ep-player">
+          <iframe
+            title="How Perception Influences Social Identity on Spotify"
+            src="https://open.spotify.com/embed/episode/6W8BuW7aMUAdO5TgAfODpZ?utm_source=generator&amp;theme=0&amp;si=d683f240e6e942fc"
+            width="100%" height="152" frameborder="0" loading="lazy"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
       </div>
-      <p class="ep-len">46 min</p>
     </article>
 
     <article class="ep">
       <p class="ep-no">03</p>
       <div class="ep-body">
         <h3 class="ep-title">Microaggressions: Death by a Thousand Paper&nbsp;Cuts</h3>
-        <p class="ep-desc">The small daily cuts, and the stereotypes they are&nbsp;rooted&nbsp;in.</p>
-        <ul class="ep-on" aria-label="Play episode 03 on">
-          <li><a href="https://podcasts.apple.com/us/podcast/the-lotus-table/id6790049830" target="_blank" rel="noopener" aria-label="Play Microaggressions: Death by a Thousand Paper Cuts on Apple Podcasts (opens in a new tab)">Apple</a></li>
-          <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Play Microaggressions: Death by a Thousand Paper Cuts on Spotify (opens in a new tab)">Spotify</a></li>
-          <li><a href="https://iheart.com/podcast/338710451/" target="_blank" rel="noopener" aria-label="Play Microaggressions: Death by a Thousand Paper Cuts on iHeartRadio (opens in a new tab)">iHeartRadio</a></li>
-        </ul>
+        <p class="ep-desc">The words and actions Asian women endure, and how to respond with intention and a dash of&nbsp;humor.</p>
+        <div class="ep-player">
+          <iframe
+            title="Microaggressions: Death by a Thousand Paper Cuts on Spotify"
+            src="https://open.spotify.com/embed/episode/2pk6ARgf0yfMFUUtd8jG6i?utm_source=generator&amp;theme=0&amp;si=5f2c1ca02bf64fc6"
+            width="100%" height="152" frameborder="0" loading="lazy"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
       </div>
-      <p class="ep-len">39 min</p>
     </article>
 
     <article class="ep">
       <p class="ep-no">04</p>
       <div class="ep-body">
         <h3 class="ep-title">The House We Inherited</h3>
-        <p class="ep-desc">What happens when tradition is passed down without the why behind&nbsp;it.</p>
-        <ul class="ep-on" aria-label="Play episode 04 on">
-          <li><a href="https://podcasts.apple.com/us/podcast/the-lotus-table/id6790049830" target="_blank" rel="noopener" aria-label="Play The House We Inherited on Apple Podcasts (opens in a new tab)">Apple</a></li>
-          <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Play The House We Inherited on Spotify (opens in a new tab)">Spotify</a></li>
-          <li><a href="https://iheart.com/podcast/338710451/" target="_blank" rel="noopener" aria-label="Play The House We Inherited on iHeartRadio (opens in a new tab)">iHeartRadio</a></li>
-        </ul>
+        <p class="ep-desc">The weight of familial expectation, and how cultural values can be weaponized against&nbsp;you.</p>
+        <div class="ep-player">
+          <iframe
+            title="The House We Inherited on Spotify"
+            src="https://open.spotify.com/embed/episode/3xG4EmvgFA2vy0z0zqoY7b?utm_source=generator&amp;theme=0&amp;si=e908e014ea6a4d3a"
+            width="100%" height="152" frameborder="0" loading="lazy"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
       </div>
-      <p class="ep-len">57 min</p>
+    </article>
+
+    <article class="ep">
+      <p class="ep-no">05</p>
+      <div class="ep-body">
+        <h3 class="ep-title">Silent Daughters of Loud&nbsp;Sacrifice</h3>
+        <p class="ep-desc">How a family measures a daughter's worth, and how that measure can hold her back from knowing&nbsp;herself.</p>
+        <div class="ep-player">
+          <iframe
+            title="Silent Daughters of Loud Sacrifice on Spotify"
+            src="https://open.spotify.com/embed/episode/7rAM9zHb2m4ELkbR86jOSz?utm_source=generator&amp;theme=0&amp;si=6858339f5a1b4be0"
+            width="100%" height="152" frameborder="0" loading="lazy"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+      </div>
+    </article>
+
+    <article class="ep">
+      <p class="ep-no">06</p>
+      <div class="ep-body">
+        <h3 class="ep-title">Breaking the Scripts that Once Ruled&nbsp;You</h3>
+        <p class="ep-desc">On letting go of the narratives that no longer serve us, and reclaiming the power to write our&nbsp;own.</p>
+        <div class="ep-player">
+          <iframe
+            title="Breaking the Scripts that Once Ruled You on Spotify"
+            src="https://open.spotify.com/embed/episode/1aTRRgQYEttryZkQjlI49o?utm_source=generator&amp;theme=0&amp;si=f86d14603b214724"
+            width="100%" height="152" frameborder="0" loading="lazy"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+      </div>
+    </article>
+
+    <article class="ep">
+      <p class="ep-no">07</p>
+      <div class="ep-body">
+        <h3 class="ep-title">Reclaim Your Power and Reborn with&nbsp;Purpose</h3>
+        <p class="ep-desc">On personal rebirth, and the role of support systems in building a life that matches your&nbsp;values.</p>
+        <div class="ep-player">
+          <iframe
+            title="Reclaim Your Power and Reborn with Purpose on Spotify"
+            src="https://open.spotify.com/embed/episode/7t0tHfRW0GwvQaB700FN5P?utm_source=generator&amp;theme=0&amp;si=d622dd48b0234763"
+            width="100%" height="152" frameborder="0" loading="lazy"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+      </div>
+    </article>
+
+    <article class="ep">
+      <p class="ep-no">08</p>
+      <div class="ep-body">
+        <h3 class="ep-title">The Courage to Lead at&nbsp;Home</h3>
+        <p class="ep-desc">On healing family wounds, forming your own closure, and setting boundaries to protect your hard-won&nbsp;peace.</p>
+        <div class="ep-player">
+          <iframe
+            title="The Courage to Lead at Home on Spotify"
+            src="https://open.spotify.com/embed/episode/5B2Qldv5ABOdcdzf8F5Ack?utm_source=generator&amp;theme=0&amp;si=bb958b25c38247d1"
+            width="100%" height="152" frameborder="0" loading="lazy"
+            allowfullscreen
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+        </div>
+      </div>
     </article>
   </div>
 </section>
@@ -584,36 +626,19 @@
 <section id="listen" aria-labelledby="listen-h">
   <div class="wrap">
     <div class="head">
-      <p class="kicker">Listen</p>
-      <h2 id="listen-h">Play the season&nbsp;here.</h2>
-    </div>
-
-    <!-- Spotify player: full show, scrollable episode list -->
-    <div class="player" id="player">
-      <div class="player-fallback">
-        <p>Player unavailable</p>
-        <a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Open The Lotus Table on Spotify (opens in a new tab)">Open on Spotify</a>
-      </div>
-      <iframe
-        id="spotify-embed"
-        title="The Lotus Table on Spotify"
-        src="https://open.spotify.com/embed/show/033NQXQAjH0upMjkG6Wzlr?utm_source=generator&amp;si=6d052cb25b11466e"
-        width="100%" height="352" frameborder="0"
-        loading="lazy"
-        allowfullscreen
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-      </iframe>
+      <p class="kicker">Follow</p>
+      <h2 id="listen-h">Keep a seat at the&nbsp;table.</h2>
     </div>
 
     <div class="follow">
       <p class="follow-copy">Season Two is in the works. Follow the show and you will know when it lands.</p>
       <ul class="follow-on" aria-label="Follow on">
-        <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Follow on Spotify (opens in a new tab)">Follow on Spotify</a></li>
+        <li><a href="https://open.spotify.com/show/033NQXQAjH0upMjkG6Wzlr" target="_blank" rel="noopener" aria-label="Follow on Spotify (opens in a new tab)">Spotify</a></li>
         <li><a href="https://podcasts.apple.com/us/podcast/the-lotus-table/id6790049830" target="_blank" rel="noopener" aria-label="Follow on Apple Podcasts (opens in a new tab)">Apple Podcasts</a></li>
+        <li><a href="https://iheart.com/podcast/338710451/" target="_blank" rel="noopener" aria-label="Follow on iHeartRadio (opens in a new tab)">iHeartRadio</a></li>
         <li><a href="mailto:cometothelotustable@gmail.com">Write to us</a></li>
       </ul>
     </div>
-
   </div>
 </section>
 
@@ -635,25 +660,6 @@
     </nav>
   </div>
 </footer>
-
-<script>
-  (function () {
-    var box = document.getElementById('player');
-    var frame = document.getElementById('spotify-embed');
-    if (!box || !frame) return;
-
-    var loaded = false;
-    frame.addEventListener('load', function () {
-      loaded = true;
-      box.classList.remove('failed');
-    });
-
-    // If the embed is blocked (sandbox, file://, tracker blockers) it never loads.
-    setTimeout(function () {
-      if (!loaded) box.classList.add('failed');
-    }, 5000);
-  })();
-</script>
 
 </body>
 </html>
