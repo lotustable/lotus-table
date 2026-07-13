@@ -45,7 +45,7 @@
     --body:"Jost",system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html{scroll-behavior:smooth;scroll-padding-top:90px}
   body{
     background:var(--paper);color:var(--ink);
     font-family:var(--body);font-weight:300;
@@ -70,7 +70,21 @@
     color:var(--ink-faint);font-weight:400;
   }
 
-  .site-nav{position:absolute;top:0;left:0;right:0;z-index:10;padding:36px 0}
+  .site-nav{
+    position:sticky;top:0;z-index:20;
+    padding:26px 0;
+    background:rgba(247,245,241,0);
+    border-bottom:1px solid transparent;
+    transition:background .35s ease, border-color .35s ease, padding .35s ease;
+  }
+  /* frosted panel appears only after the page moves */
+  .site-nav.stuck{
+    padding:16px 0;
+    background:rgba(247,245,241,.82);
+    backdrop-filter:blur(12px) saturate(140%);
+    -webkit-backdrop-filter:blur(12px) saturate(140%);
+    border-bottom-color:var(--hair);
+  }
   .site-nav .wrap{display:flex;justify-content:space-between;align-items:center}
   .mark{
     display:inline-flex;align-items:center;gap:12px;
@@ -88,8 +102,9 @@
   .site-nav a:hover{color:var(--ink);border-color:var(--ink-faint)}
 
   header{
-    min-height:100vh;display:flex;align-items:center;
-    position:relative;padding:140px 0 130px;
+    min-height:calc(100vh - 82px);
+    display:flex;align-items:center;
+    position:relative;padding:60px 0 130px;
     isolation:isolate;
   }
   header::before{
@@ -360,7 +375,7 @@
     .ep-title{font-size:1.5rem}
     .site-nav ul{gap:20px}
     section{padding:90px 0}
-    header{min-height:auto;padding:130px 0 70px}
+    header{min-height:auto;padding:50px 0 70px}
     .scroll{display:none}
   }
   @media (max-width:520px){
@@ -389,7 +404,7 @@
 
 <nav class="site-nav" aria-label="Primary">
   <div class="wrap">
-    <a class="mark" href="#main">
+    <a class="mark" href="/" aria-label="The Lotus Table, home">
       <img src="logo.png" alt="" width="30" height="28">
       <span>The Lotus Table</span>
     </a>
@@ -660,6 +675,18 @@
     </nav>
   </div>
 </footer>
+
+<script>
+  (function () {
+    var nav = document.querySelector('.site-nav');
+    if (!nav) return;
+    var onScroll = function () {
+      nav.classList.toggle('stuck', window.scrollY > 24);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>
 
 </body>
 </html>
